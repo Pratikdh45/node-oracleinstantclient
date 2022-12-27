@@ -1,12 +1,13 @@
 FROM oraclelinux:7-slim as builder
 WORKDIR /opt/oracle/instantclient_21_4
 RUN yum install -y unzip
-RUN curl -o basic https://download.oracle.com/otn_software/linux/instantclient/214000/instantclient-basic-linux.x64-21.4.0.0.0dbru.zip && \
-    curl -o sql https://download.oracle.com/otn_software/linux/instantclient/214000/instantclient-sqlplus-linux.x64-21.4.0.0.0dbru.zip && \
-    curl -o sdk https://download.oracle.com/otn_software/linux/instantclient/214000/instantclient-sdk-linux.x64-21.4.0.0.0dbru.zip && \
-    unzip -d /opt/oracle basic && \
-    unzip -d /opt/oracle sql && \
-    unzip -d /opt/oracle sdk && \
+RUN curl -o basic.zip https://download.oracle.com/otn_software/linux/instantclient/214000/instantclient-basic-linux.x64-21.4.0.0.0dbru.zip && \
+    curl -o sql.zip https://download.oracle.com/otn_software/linux/instantclient/214000/instantclient-sqlplus-linux.x64-21.4.0.0.0dbru.zip && \
+    curl -o sdk.zip https://download.oracle.com/otn_software/linux/instantclient/214000/instantclient-sdk-linux.x64-21.4.0.0.0dbru.zip && \
+    unzip -d /opt/oracle basic.zip && \
+    unzip -d /opt/oracle sql.zip && \
+    unzip -d /opt/oracle sdk.zip && \
+    rm -rf *.zip && \
     echo /opt/oracle/instantclient* > /etc/ld.so.conf.d/oracle-instantclient.conf && \
     ldconfig && \
     cd /opt/oracle/instantclient_21_4 && find . -type f | sort && \
