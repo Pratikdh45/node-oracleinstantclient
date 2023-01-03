@@ -6,7 +6,7 @@ pipeline {
     stages{
         stage('Build Docker Image'){
             steps{
-                sh "docker build . -t pratik1945/test:testing"
+                sh "docker build -t pratik1945/test:testing ."
             }
         }
         stage('DockerHub Push'){
