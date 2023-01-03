@@ -1,19 +1,19 @@
 pipeline {
     agent any
-    environment{
-        DOCKER_TAG = testing()
-    }
+//     environment{
+//         DOCKER_TAG = testing()
+//     }
     stages{
         stage('Build Docker Image'){
             steps{
-                sh "docker build . -t pratik1945/test:${DOCKER_TAG} "
+                sh "docker build . -t pratik1945/test:testing"
             }
         }
         stage('DockerHub Push'){
             steps{
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u pratik1945 -p ${dockerHubPwd}"
-                    sh "docker push pratik1945/test:${DOCKER_TAG}"
+                    sh "docker login -u pratik1945 -p shreekrupa45"
+                    sh "docker push pratik1945/test:testing"
                 }
             }
         }
