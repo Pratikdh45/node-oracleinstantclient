@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        DOCKER_TAG = 1.0.0()
+        DOCKER_TAG = 1.0.0
     }
     stages{
         stage('Build Docker Image'){
