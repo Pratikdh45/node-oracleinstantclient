@@ -1,5 +1,8 @@
 pipeline {
-    agent any      
+    agent any 
+     environment{
+         VERSION = sh(script:VERSION = readFile(file: 'version.txt') )
+     }         
     stages{
         stage('Build Version'){
             steps {
@@ -8,11 +11,6 @@ pipeline {
                 println(VERSION)
                 sh "export VERSION=$VERSION"
                }
-            }
-        } 
-        stage('ECHO'){
-            steps{
-            sh 'echo=$VERSION'
             }
         }        
         stage('Build Docker Image'){
