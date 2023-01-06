@@ -1,8 +1,18 @@
 pipeline {
     agent any
-//     environment{
-//         DOCKER_TAG = testing()
-//     }
+     environment{
+         VERSION = "version"
+     }       
+    stages{
+        stage('Build Version'){
+            steps {
+            script {
+                def version = readFile(file: 'version.txt')
+                println(version)
+                echo version
+               }
+            }
+        }
     stages{
         stage('Build Docker Image'){
             steps{
@@ -11,7 +21,7 @@ pipeline {
         }
         stage('DockerHub Push'){
             steps{
-                    sh 'docker login -u pratik1945 -p '
+                    sh 'docker login -u pratik1945 -p shreekrupa45'
 		    sh 'docker push pratik1945/${SERVICE_NAME}:${BUILD_NUMBER}'
             }
         }
