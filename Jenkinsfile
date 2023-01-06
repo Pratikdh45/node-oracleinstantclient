@@ -6,16 +6,10 @@ pipeline {
             script {
                 env.VERSION = readFile(file: 'version.txt')
                 echo "Build Version = $VERSION"
+		currentBuild.displayName = "${params.SERVICE_NAME}-${env.VERSION}"
                }
             }
-        }
-        stage ('init') {          
-            steps {
-            script{
-                currentBuild.displayName = "${params.SERVICE_NAME}-${env.VERSION}"
-               }
-            }
-        }        
+        }       
         stage('Build Docker Image'){
             steps{
 		    sh 'docker build -t pratik1945/${SERVICE_NAME}:${VERSION} .'
