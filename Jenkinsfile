@@ -4,11 +4,9 @@ pipeline {
         stage('Build Version'){
             steps {
             script {
-                def version = readFile(file: 'version.txt')
-                println(version)
-                echo version
-                export VERSION=$1
-                echo "version"= $VERSION
+                def VERSION = readFile(file: 'version.txt')
+                println(VERSION)
+                echo $VERSION
                }
             }
         }        
