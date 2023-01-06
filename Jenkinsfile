@@ -25,21 +25,6 @@ pipeline {
 		    sh 'docker push pratik1945/${SERVICE_NAME}:${VERSION}'
             }
         }
-        // stage('Deploy to DevServer'){
-        //     steps{
-        //         sshagent (credentials: ['dev-server']) {
-		// 		    script{
-		// 			    sh returnStatus: true, script: 'ssh ec2-user@172.31.4.187 docker rm -f nodeapp'
-		// 				def runCmd = "docker run -d -p 8080:8080 --name=nodeapp kammana/nodeapp:${DOCKER_TAG}"
-		// 				sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.4.187 ${runCmd}"
-		// 			}
-		// 		}
-        //     }
-        // }
     }
 }
-
-// def getDockerTag(){
-//     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
-//     return tag
-// }
+}
