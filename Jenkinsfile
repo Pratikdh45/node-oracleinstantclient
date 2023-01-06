@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment{
-         VERSION = "version"
+         VERSION = version
      }       
     stages{
         stage('Build Version'){
@@ -12,8 +12,7 @@ pipeline {
                 echo version
                }
             }
-        }
-    stages{
+        }        
         stage('Build Docker Image'){
             steps{
 		    sh 'docker build -t pratik1945/${SERVICE_NAME}:${VERSION} .'
@@ -26,5 +25,4 @@ pipeline {
             }
         }
     }
-}
 }
