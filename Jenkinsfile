@@ -1,8 +1,5 @@
 pipeline {
-    agent any
-     environment{
-         VERSION = "version"
-     }       
+    agent any      
     stages{
         stage('Build Version'){
             steps {
@@ -10,6 +7,8 @@ pipeline {
                 def version = readFile(file: 'version.txt')
                 println(version)
                 echo version
+                export VERSION=$1
+                echo "version = " $VERSION
                }
             }
         }        
