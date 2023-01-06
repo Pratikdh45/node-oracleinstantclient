@@ -6,6 +6,7 @@ pipeline {
             script {
                 VERSION = readFile(file: 'version.txt')
                 println(VERSION)
+                sh "export VERSION=$VERSION"
                 echo $VERSION
                }
             }
