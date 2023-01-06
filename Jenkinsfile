@@ -1,7 +1,7 @@
 pipeline {
     agent any 
      environment{
-         VERSION = sh(script:VERSION = readFile(file: 'version.txt') )
+         VERSION = sh(VERSION = readFile(file: 'version.txt') )
      }         
     stages{
         stage('Build Version'){
