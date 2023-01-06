@@ -5,7 +5,7 @@ pipeline {
             steps {
             script {
                 env.VERSION = readFile(file: 'version.txt')
-                echo "Build Version =" VERSION
+                echo "Build Version = $VERSION"
                 returnStdout: true
                 sh "echo ${env.VERSION}"
                }
