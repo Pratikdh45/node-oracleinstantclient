@@ -12,7 +12,7 @@ pipeline {
         } 
         stage('ECHO'){
             steps{
-                echo=$VERSION
+            'echo=$VERSION'
             }
         }        
         stage('Build Docker Image'){
