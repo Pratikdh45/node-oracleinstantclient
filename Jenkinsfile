@@ -9,7 +9,7 @@ pipeline {
                }
             }
         }
-        stage ('Init') {          
+        stage ('init') {          
             steps {
             script{
                 currentBuild.displayName = "${params.SERVICE_NAME}-${env.VERSION}"
