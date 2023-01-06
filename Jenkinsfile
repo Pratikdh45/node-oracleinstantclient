@@ -5,8 +5,7 @@ pipeline {
             steps {
             script {
                 env.VERSION = readFile(file: 'version.txt')
-                println(VERSION)
-                sh "export VERSION=$VERSION"
+                echo VERSION
                 returnStdout: true
                 sh "echo ${env.VERSION}"
                }
