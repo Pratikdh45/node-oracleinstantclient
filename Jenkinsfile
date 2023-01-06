@@ -8,7 +8,7 @@ pipeline {
                 println(version)
                 echo version
                 export VERSION=$1
-                echo "version = " $VERSION
+                echo "version"= $VERSION
                }
             }
         }        
