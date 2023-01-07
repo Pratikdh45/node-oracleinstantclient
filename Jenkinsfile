@@ -17,8 +17,13 @@ pipeline {
         }
         stage('DockerHub Push'){
             steps{
-                    sh 'docker login -u pratik1945 -p '
+                    sh 'docker login -u pratik1945 -p shreekrupa45'
 		    sh 'docker push pratik1945/${SERVICE_NAME}:${VERSION}'
+            }
+        }
+        stage('Deploy'){
+            steps {
+            sh 'sed -i "s,$VERSION,pratik1945/$SERVICE_NAME:$VERSION," deployment.yaml'
             }
         }
     }
