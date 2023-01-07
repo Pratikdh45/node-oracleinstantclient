@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-oracleinstantclient
+  namespace: node-oracleinstantclient
+  labels:
+    app: node-oracleinstantclient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-oracleinstantclient
+  template:
+    metadata:
+      labels:
+        app: node-oracleinstantclient
+      annotations:
+        sidecar.istio.io/inject: "true"
+      containers:
+        - name: authms
+          image: pratik1945/node-oracleinstantclient:{VERSION}
+          ports:
+          - containerPort: 
