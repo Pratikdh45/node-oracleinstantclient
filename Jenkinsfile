@@ -26,7 +26,7 @@ pipeline {
             script{
 	    sh """#!/bin/bash
             cat deployment.yaml | grep VERSION
-            sed -i 's|VERSION: .*|version: "${VERSION}"|' ./deployment.yaml
+            sed -i '/s/VERSION/${VERSION}' ./deployment.yaml
             cat deployment.yaml | grep VERSION
             """
 	    }
