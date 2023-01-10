@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-            sh 'sed -i 's/VERSION/${VERSION}/g' deployment.yaml'
+            sh 'sed -i 's|VERSION: .*|VERSION: "${VERSION}"|' deployment.yaml'
 	    }
         }
     }
