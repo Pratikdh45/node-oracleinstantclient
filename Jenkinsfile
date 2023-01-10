@@ -23,13 +23,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-            script{
-	    sh """#!/bin/bash
-            cat deployment.yaml | grep VERSION
-            sed -i 's|VERSION: .*|VERSION: ${VERSION}|' deployment.yml
-            cat deployment.yaml | grep VERSION
-            """
-	    }
+            sh 'kubectl set image pratik1945/${SERVICE_NAME}:${VERSION}'
 	    }
         }
     }
