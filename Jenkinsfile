@@ -23,7 +23,18 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-            sh 'sed -i 's|VERSION: .*|VERSION: "${VERSION}"|' deployment.yaml'
+            script{
+            sh """
+                source /home/builder/.bash_profile
+                echo Image Tag is ${env.VERSION}
+                cd ${env.SERVICE_NAME}/kubernetes
+                sed -i 's/latest/${env.VERSION}/g' deployment.yaml
+                cat deployment.yaml
+                echo Updating Deployment..
+                kubectl apply -f deployment.yaml -n $SERVICE_NAME --force
+                sed -i 's/${env.VERSION}/latest/g' deployment.yaml
+                """
+               }            
             }
         }
     }
